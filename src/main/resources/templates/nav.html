@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>alert</title>
+    <!-- Link to FontAwesome CSS (add the correct link based on your setup) -->
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <!-- Your other CSS and meta tags should go here -->
+</head>
+<body>
+<div th:fragment="navbar"><!-- Navbar Start -->
+    <div style="height: 80px; background-color: #12121280; position: absolute; top: 0; left: 0;
+        right: 0; z-index: 999; display: flex; justify-content: space-between; align-items: center;
+        padding: 0 20px; color: #fff;">
+        <!-- Transparent Navbar -->
+
+<!--        <h1 style="margin: 0; font-size: 36px; text-transform: uppercase;">-->
+<!--            <span style="color: #000000;">Learning</span>-->
+<!--            <span style="color: #6674CC;">kart</span>-->
+<!--        </h1>-->
+        <img src="/image/elearning.jpg" style="width: 90px;">
+
+        <!-- For Guest -->
+        <div class="nav-item active" th:if="!${session.user}" style="margin-bottom: 6px;">
+            <div style="display: flex; align-items: center;
+             
+            padding: 10px; /* Decreased padding */
+            background-size: 400% 400%; 
+            background-image: linear-gradient(-45deg, #ff5959, #ff4040, #ff0d6e, #ff8033, #d74177); 
+            animation: 12s myGradient infinite; 
+            border-radius: 20px; /* Decreased border radius */
+            box-shadow: 3px 3px 20px rgba(255, 51, 82, 0.5); 
+            border-top-left-radius: 0px; 
+            border-bottom-right-radius: 0px;">
+
+    <a th:href="@{/}" class="nav-path" style="margin: 0 5px; color: #000000; text-decoration: none; font-size: 16px; text-transform: uppercase; transition: color 1s; ">Home</a>
+    <a th:href="@{/search}" class="nav-path" style="margin: 0 5px; color: #000000; text-decoration: none; font-size: 16px; text-transform: uppercase; transition: color 1s;">Search</a>
+    <a th:href="@{/courses}" class="nav-path" style="margin: 0 5px; color: #000000; text-decoration: none; font-size: 16px; text-transform: uppercase; transition: color 1s;">Courses</a>
+    <a th:href="@{/contactus}" class="nav-path" style="margin: 0 5px; color: #000000; text-decoration: none; font-size: 16px; text-transform: uppercase; transition: color 1s;">Contact Us</a>
+    <a th:href="@{/abdur}" class="nav-path" style="margin: 0 5px; color: #000000; text-decoration: none; font-size: 16px; text-transform: uppercase; transition: color 1s;">About Us</a>
+    <a th:href="@{/signup}" class="nav-path" style="margin: 0 5px; color: #000000; text-decoration: none; font-size: 16px; text-transform: uppercase; transition: color 1s;">Signup</a>
+    
+    <a th:href="@{/login}" style="color: #FFFFFF; text-decoration: none; font-size: 16px; text-transform: uppercase; padding: 0.25rem 0.5rem; background-color: rgba(102, 116, 204, 0.7); border: 1px solid rgba(102, 116, 204, 0.7); border-radius: 0.375rem; display: flex; align-items: center;">
+        Login
+        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="ml-2 text-xl" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+            <polyline points="10 17 15 12 10 7"></polyline>
+            <line x1="15" y1="12" x2="3" y2="12"></line>
+        </svg>
+    </a>
+</div>
+
+<style>
+    .nav-path:hover{
+        background:none;
+        transition: 1s;
+    }
+    @keyframes myGradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .nav-path {
+        transition: color 1s; /* Smooth transition for color */
+    }
+
+    .nav-path:hover {
+        color: #ffeb3b; /* Change color on hover */
+    }
+
+    /* Login button hover effect */
+    a[th\:href="@{/login}"] { /* Corrected selector without double backslash */
+        transition: background-color 1s, border-color 1s; /* Smooth transition for background and border */
+    }
+
+    a[th\:href="@{/login}"]:hover { /* Corrected selector without double backslash */
+        background-color: rgba(255, 255, 255, 0.8); /* Change background color on hover */
+        border-color: rgba(255, 255, 255, 0.8); /* Change border color on hover */
+    }
+</style>
+
+        </div>
+
+        <!-- For User -->
+        <span th:if="${session.user}" th:switch="${session.user.role}">
+            <span th:case="'user'">
+                <div class="nav-item active">
+                    <div style="display: flex; align-items: center;
+             
+            padding: 10px; /* Decreased padding */
+            background-size: 400% 400%; 
+            background-image: linear-gradient(-45deg, #ff5959, #ff4040, #ff0d6e, #ff8033, #d74177); 
+            animation: 12s myGradient infinite; 
+            border-radius: 20px; /* Decreased border radius */
+            box-shadow: 3px 3px 20px rgba(255, 51, 82, 0.5); 
+            border-top-left-radius: 0px; 
+            border-bottom-right-radius: 0px;">
+             <!-- Added align-items: center -->
+                        <a th:href="@{/}" class="nav-path"   style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Home</a>
+                        <a th:href="@{/search}" class="nav-path"  style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Search</a>
+                        <a th:href="@{/courses}" class="nav-path"  style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Courses</a>
+                        <a th:href="@{/my-courses}" class="nav-path"   style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">My Courses</a>
+                        <a th:href="@{/profile}"  class="nav-path"  style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Profile</a>
+                        <a th:href="@{/contactus}" class="nav-path"  style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Contact Us</a>
+                        <a th:href="@{/logout}" style=" color: #FFFFFF; text-decoration: none; font-size: 18px; text-transform: uppercase; padding: 0.5rem 0.85rem; background-color: #868e96; border: 1px solid #868e96; border-radius: 0.375rem; display: flex; align-items: center;" href="#">
+                            Logout
+                            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="ml-2 text-xl" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                                <polyline points="10 17 15 12 10 7"></polyline>
+                                <line x1="15" y1="12" x2="3" y2="12"></line>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <style>
+                        .nav-path:hover{
+                            background:none;
+                            transition: 1s;
+                        }
+                        @keyframes myGradient {
+                            0% {
+                                background-position: 0% 50%;
+                            }
+                            50% {
+                                background-position: 100% 50%;
+                            }
+                            100% {
+                                background-position: 0% 50%;
+                            }
+                        }
+                    
+                        .nav-path {
+                            transition: color 1s; /* Smooth transition for color */
+                        }
+                    
+                        .nav-path:hover {
+                            color: #ffeb3b; /* Change color on hover */
+                        }
+                    
+                        /* Login button hover effect */
+                        a[th\:href="@{/login}"] { /* Corrected selector without double backslash */
+                            transition: background-color 1s, border-color 1s; /* Smooth transition for background and border */
+                        }
+                    
+                        a[th\:href="@{/login}"]:hover { /* Corrected selector without double backslash */
+                            background-color: rgba(255, 255, 255, 0.8); /* Change background color on hover */
+                            border-color: rgba(255, 255, 255, 0.8); /* Change border color on hover */
+                        }
+                    </style>
+                    
+                </div>
+            </span>
+
+            <!-- For Admin -->
+            <span th:case="'admin'">
+                <div class="nav-item active">
+                    <div style="display: flex; align-items: center;"> <!-- Added align-items: center -->
+                        <a th:href="@{/}" class="nav-path"  style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Home</a>
+                        <a th:href="@{/search}" class="nav-path"   style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Search</a>
+                        <a th:href="@{/init-add-course}" class="nav-path"  style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Add Courses</a>
+                        <a th:href="@{/courses}"  class="nav-path"  style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Manage Courses</a>
+                        <a th:href="@{/profile}"  class="nav-path"  style="margin: 0 10px; color: #000000; text-decoration: none; font-size: 18px; text-transform: uppercase;" href="#">Profile</a>
+
+                        <a th:href="@{/logout}" style=" color: #FFFFFF; text-decoration: none; font-size: 18px; text-transform: uppercase; padding: 0.5rem 0.85rem; background-color:#868e96; border: 1px solid #868e96; border-radius: 0.375rem; display: flex; align-items: center;" href="#">
+                            Logout
+                            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="ml-2 text-xl" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                                <polyline points="10 17 15 12 10 7"></polyline>
+                                <line x1="15" y1="12" x2="3" y2="12"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </span>
+        </span>
+    </div>
+    <script>
+        // Function to show the navbar when scrolling down
+        window.onscroll = function () {
+            var navbar = document.querySelector("div");
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = "#222";
+            } else {
+                navbar.style.backgroundColor = "transparent";
+            }
+        };
+        function setActiveLink(event) {
+    const navbarLinks = document.querySelectorAll('nav a');
+
+    // Remove active class from all links
+    navbarLinks.forEach(link => {
+      link.classList.remove('active');
+    });
+
+    // Add active class to the clicked link
+    event.target.classList.add('active');
+  }
+
+  // Function to attach event listeners to navbar links
+  function attachLinkListeners() {
+    const navbarLinks = document.querySelectorAll('nav a');
+
+    navbarLinks.forEach(link => {
+      link.addEventListener('click', setActiveLink);
+    });
+  }
+
+  // Call the function to attach the event listeners when the page is fully loaded
+  document.addEventListener('DOMContentLoaded', attachLinkListeners);
+
+    </script>
+</div>
+</body>
+</html>
